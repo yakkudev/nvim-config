@@ -18,6 +18,8 @@ vim.keymap.set("n", "<C-g>", vim.lsp.buf.definition, { desc = "Go to definition"
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
 
+vim.keymap.set("n", "<C-a>", "<cmd>LspClangdSwitchSourceHeader<CR>", { desc = "Switch source/header" })
+
 -- semicolon insert at end of line :)
 vim.keymap.set("n", ";", function()
     local line = vim.api.nvim_get_current_line()

@@ -7,6 +7,8 @@ vim.opt.clipboard = 'unnamedplus' -- use system clipboard for yanking
 vim.opt.nu = true -- line numbers
 vim.opt.relativenumber = true -- relative line numbers
 
+vim.opt.signcolumn = "yes:1"
+
 -- set tab size
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4

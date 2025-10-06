@@ -93,7 +93,7 @@ return {
 
         -- warn/error messages
         vim.diagnostic.config({
-            update_in_insert = false,
+            update_in_insert = true,
             underline = true,
             signs = true,
             virtual_lines = { current_line = true },
