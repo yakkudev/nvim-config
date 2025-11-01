@@ -1,5 +1,5 @@
 -- the goddamn lsp config
--- todo: make another file where all servers are neatly together without all the other bs
+
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -30,19 +30,10 @@ return {
         require("fidget").setup({})
         require("mason").setup()
 
+        local servers = require("domi.lsp.servers")
         require("mason-lspconfig").setup({
-            ensure_installed = { "lua_ls", "rust_analyzer", "clangd" },
-            handlers = {
-                function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
-                    }
-                end,
-
-                clangd = function()
-                    require("lspconfig").clangd.setup({capabilities = capabilities, })
-                end,
-            }
+            ensure_installed = servers.ensure_installed,
+            handlers = servers.get_handlers(),
         })
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
