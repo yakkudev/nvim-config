@@ -35,23 +35,22 @@ vim.keymap.set("n", "<leader>e", tree.focus, { desc = "Open file explorer" })
 
 -- telescope bindings
 local builtin = require('telescope.builtin')
+
 local telescope_mappings = {
-    f = {
-        name = "Find",
-        f = { builtin.find_files, "Find files" },
-        g = { builtin.git_files, "Find git files" },
-        l = { builtin.live_grep, "Live grep" },
-    },
+    { "<leader>f", group = "Find" },
+    { "<leader>ff", builtin.find_files, desc = "Find files" },
+    { "<leader>fg", builtin.git_files, desc = "Find git files" },
+    { "<leader>fl", builtin.live_grep, desc = "Live grep" },
 }
 
-which_key.register(telescope_mappings, { prefix = "<leader>" })
+which_key.add(telescope_mappings)
 
 -- move selection up/down
 local move_mappings  = {
-    J = { ":m '>+1<CR>gv=gv", "Move selection down" },
-    K = { ":m '<-2<CR>gv=gv", "Move selection up" },
+    { "J", ":m '>+1<CR>gv=gv", desc = "Move selection down" },
+    { "J", ":m '<-2<CR>gv=gv", desc = "Move selection up" },
 }
 
-which_key.register(move_mappings, { mode = "v" })
+which_key.add(move_mappings, { mode = "v" })
 
 

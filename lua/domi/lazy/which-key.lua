@@ -3,4 +3,5 @@ return {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = { },
+    dependencies = { "nvim-mini/mini.nvim", version = "*" };
 }
