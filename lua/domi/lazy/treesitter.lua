@@ -8,7 +8,7 @@ return {
         vim.api.nvim_create_autocmd('FileType', {
             pattern = { "c3" },
             callback = function() vim.treesitter.start() end,
-            once = true,
+            once = false,
         })
         require("nvim-treesitter").setup({
             ensure_installed = {

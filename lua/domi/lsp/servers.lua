@@ -1,7 +1,24 @@
 local M = {}
-local lspconfig = vim.lsp.config
+local lspconfig = require("lspconfig")
 
-M.ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "c3-lsp" };
+local util = require('lspconfig/util')
+local configs = require('lspconfig.configs')
+if not configs.c3_lsp then
+    configs.c3_lsp = {
+        default_config = {
+            cmd = { "/usr/bin/c3lsp" },
+            filetypes = { "c3", "c3i" },
+            root_dir = function(fname)
+                return util.find_git_ancestor(fname)
+            end,
+            settings = {},
+            name = "c3_lsp"
+        }
+    }
+end
+lspconfig.c3_lsp.setup{}
+
+M.ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "c3-lsp", "ols" };
 
 M.get_handlers = function(capabilities)
     return {
@@ -14,6 +31,11 @@ M.get_handlers = function(capabilities)
         clangd = function()
             lspconfig.clangd.setup({capabilities = capabilities, })
         end,
+
+        c3_lsp = function()
+            lspconfig.clangd.setup({capabilities = capabilities, })
+        end,
+
     }
 end
 
